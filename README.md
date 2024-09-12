@@ -1,6 +1,6 @@
 # Hype or Flop
 
-- [ ] Create Market
+- [x] Create Market
 - [ ] Bet Hype or Flop and Mint NFT's
 - [ ] Close Market and Allow to reclaim the SOL and profits
 - [ ] Create a Frontend to initialize a new Market

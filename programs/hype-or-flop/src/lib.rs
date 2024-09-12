@@ -1,4 +1,10 @@
 use anchor_lang::prelude::*;
+use instructions::*;
+use state::*;
+
+mod errors;
+pub mod instructions;
+pub mod state;
 
 declare_id!("E4ZzS3D1XA1jKLYu4BssDVUXsZzPLiuBDabumAYFhAiC");
 
@@ -6,11 +12,7 @@ declare_id!("E4ZzS3D1XA1jKLYu4BssDVUXsZzPLiuBDabumAYFhAiC");
 pub mod hype_or_flop {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
-        Ok(())
+    pub fn create_market(ctx: Context<CreateMarket>, args: CreateMarketArgs) -> Result<()> {
+        instructions::create_market(ctx, args)
     }
 }
-
-#[derive(Accounts)]
-pub struct Initialize {}
