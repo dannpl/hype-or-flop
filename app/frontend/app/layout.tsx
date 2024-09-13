@@ -3,9 +3,6 @@ import { DM_Sans } from 'next/font/google';
 import type { ReactNode } from 'react';
 import NextTopLoader from 'nextjs-toploader';
 import { AppLayout } from '@/components/AppLayout';
-import { Analytics } from '@vercel/analytics/react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import './globals.css';
 import { cn } from 'utils/cn';
 
@@ -66,7 +63,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             shadow="0 0 10px #3961FB,0 0 5px #3961FB"
           />
           {children}
-          <Analytics />
         </AppLayout>
       </body>
     </html>

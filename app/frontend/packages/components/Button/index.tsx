@@ -1,6 +1,6 @@
 import type { StrictOmit } from 'ts-essentials';
 import type { ComponentProps, ReactNode } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '../../../utils/cn';
 import { IconLoading } from '../Icons/IconLoading';
 
 type BaseProps = {
