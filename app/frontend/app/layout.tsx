@@ -9,7 +9,7 @@ import { cn } from 'utils/cn';
 const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'NapCat',
+  title: 'TRD',
   description: '',
   icons: [
     {
