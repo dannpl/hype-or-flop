@@ -8,3 +8,5 @@
 - [ ] Create a Frontend to list Market
 - [ ] Create a Frontend to Bet and see market details
 - [ ] Add support to Canvas on DSCVR
+
+The game is simple! if Hype wins, all SOL will be split between Hype users and Flop users will lose the SOL they bet. All NFTs are burnt after the betting ends.
