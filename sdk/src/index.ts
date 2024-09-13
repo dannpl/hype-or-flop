@@ -30,7 +30,7 @@ export default class HypeOrFlopClient {
   }
 
   /**
-   *  Claim Fee
+   * Claim Fee
    * @param args - Arguments.
    * @param args.userPubkey - The user public key.
    * @param args.marketPubkey - The market public key.
@@ -89,10 +89,11 @@ export default class HypeOrFlopClient {
   }
 
   /**
-   *  Claim admin fee
+   * Create market
    * @param args - Arguments.
-   * @param args.userPubkey - The user public key.
-   * @param args.marketPubkey - The market public key.
+   * @param args.name - The name.
+   * @param args.image - The image.
+   * @param args.solPrice - The sol price.
    *
    * @param options - Options to RPC call
    * @param options.skipPreflight - Skip preflight checks.
