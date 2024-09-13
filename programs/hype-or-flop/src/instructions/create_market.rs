@@ -33,6 +33,7 @@ pub fn create_market(ctx: Context<CreateMarket>, args: CreateMarketArgs) -> Resu
     market.flop_ticker = args.flop_ticker;
     market.hype_amount = 0;
     market.flop_amount = 0;
+    market.sol_price = args.sol_price;
 
     Ok(())
 }

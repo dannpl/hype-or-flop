@@ -23,6 +23,7 @@ pub struct CreateMarketArgs {
     pub name: [u8; 16],
     pub hype_ticker: [u8; 10],
     pub flop_ticker: [u8; 10],
+    pub sol_price: u64,
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize)]
