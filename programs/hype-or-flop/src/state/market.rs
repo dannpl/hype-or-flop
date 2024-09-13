@@ -10,6 +10,7 @@ pub struct Market {
     pub name: [u8; 16],
     pub sol_price: u64,
     pub image: [u8; 32],
+    pub admin_fee_claimed: bool,
     pub hype_ticker: [u8; 10],
     pub flop_ticker: [u8; 10],
     pub hype_amount: u64,
@@ -30,6 +31,11 @@ pub struct CreateMarketArgs {
 #[derive(AnchorSerialize, AnchorDeserialize)]
 pub struct BuyArgs {
     pub buy_type: Type,
+}
+
+#[derive(AnchorSerialize, AnchorDeserialize)]
+pub struct SellArgs {
+    pub sell_type: Type,
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, PartialEq)]

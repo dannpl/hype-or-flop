@@ -1,4 +1,4 @@
-use crate::{ errors::CustomError, state::Market, BuyArgs, Type };
+use crate::{ errors::CustomError, state::Market, SellArgs, Type };
 use anchor_lang::prelude::*;
 use anchor_lang::solana_program::program::invoke_signed;
 use anchor_lang::solana_program::system_instruction::transfer;
@@ -6,7 +6,7 @@ use anchor_spl::token::{ close_account, CloseAccount, TokenAccount };
 use anchor_spl::token::Token;
 
 #[derive(Accounts)]
-#[instruction(args: BuyArgs)]
+#[instruction(args: SellArgs)]
 pub struct Sell<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
@@ -22,7 +22,7 @@ pub struct Sell<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn sell(ctx: Context<Sell>, args: BuyArgs) -> Result<()> {
+pub fn sell(ctx: Context<Sell>, args: SellArgs) -> Result<()> {
     let market = &mut ctx.accounts.market;
     let signer = &ctx.accounts.signer;
     let asset = &ctx.accounts.asset;
@@ -57,7 +57,7 @@ pub fn sell(ctx: Context<Sell>, args: BuyArgs) -> Result<()> {
         return Err(CustomError::TransferFailed.into());
     }
 
-    if args.buy_type.eq(&Type::Hype) {
+    if args.sell_type.eq(&Type::Hype) {
         market.hype_amount = market.hype_amount.checked_sub(1).unwrap();
     } else {
         market.flop_amount = market.flop_amount.checked_sub(1).unwrap();

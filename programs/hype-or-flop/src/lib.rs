@@ -19,4 +19,12 @@ pub mod hype_or_flop {
     pub fn buy(ctx: Context<Buy>, args: BuyArgs) -> Result<()> {
         instructions::buy(ctx, args)
     }
+
+    pub fn sell(ctx: Context<Sell>, args: SellArgs) -> Result<()> {
+        instructions::sell(ctx, args)
+    }
+
+    pub fn claim_admin_fee(ctx: Context<ClaimAdminFee>) -> Result<()> {
+        instructions::claim_admin_fee(ctx)
+    }
 }
