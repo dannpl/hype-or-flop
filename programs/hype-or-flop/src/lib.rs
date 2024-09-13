@@ -27,4 +27,8 @@ pub mod hype_or_flop {
     pub fn claim_admin_fee(ctx: Context<ClaimAdminFee>) -> Result<()> {
         instructions::claim_admin_fee(ctx)
     }
+
+    pub fn claim_fee(ctx: Context<ClaimFee>) -> Result<()> {
+        instructions::claim_fee(ctx)
+    }
 }

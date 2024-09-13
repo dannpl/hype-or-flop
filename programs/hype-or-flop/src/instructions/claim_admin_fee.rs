@@ -39,7 +39,7 @@ pub fn claim_admin_fee(ctx: Context<ClaimAdminFee>) -> Result<()> {
 
     let mut amount_users = market.hype_amount;
 
-    if market.flop_amount > market.hype_amount {
+    if market.hype_amount > market.flop_amount {
         amount_users = market.flop_amount;
     }
 
