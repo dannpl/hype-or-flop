@@ -23,14 +23,16 @@ pub fn create_market(ctx: Context<CreateMarket>, args: CreateMarketArgs) -> Resu
     let market: &mut Account<Market> = &mut ctx.accounts.market;
 
     market.init_ts = Clock::get()?.unix_timestamp;
+    // Set the end timestamp to 3 days from now
+    market.end_ts = Clock::get()?.unix_timestamp + 3 * 24 * 60 * 60;
     market.bump = ctx.bumps.market;
     market.name = args.name;
     market.authority = *ctx.accounts.signer.key;
     market.users = 0;
     market.hype_ticker = args.hype_ticker;
     market.flop_ticker = args.flop_ticker;
-    market.hype_price = 0;
-    market.flop_price = 0;
+    market.hype_amount = 0;
+    market.flop_amount = 0;
 
     Ok(())
 }
