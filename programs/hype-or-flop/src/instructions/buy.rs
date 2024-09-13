@@ -1,5 +1,7 @@
 use crate::{ errors::CustomError, state::Market, BuyArgs, Type };
 use anchor_lang::prelude::*;
+use anchor_lang::solana_program::program::invoke;
+use anchor_lang::solana_program::system_instruction::transfer;
 use mpl_core::instructions::{ CreateV2Cpi, CreateV2CpiAccounts, CreateV2InstructionArgs };
 use mpl_core::types::DataState::AccountState;
 use anchor_spl::{ associated_token::AssociatedToken, token::Token };
@@ -36,6 +38,23 @@ pub fn buy(ctx: Context<Buy>, args: BuyArgs) -> Result<()> {
     let market_signer: &[&[&[u8]]] = &[
         &[b"market", &market.name, signer.key.as_ref(), &[market.bump]],
     ];
+
+    let transfer_ix = invoke(
+        &transfer(
+            &ctx.accounts.signer.to_account_info().key,
+            &market.to_account_info().key,
+            market.sol_price
+        ),
+        &[
+            ctx.accounts.signer.to_account_info(),
+            market.to_account_info(),
+            ctx.accounts.system_program.to_account_info(),
+        ]
+    );
+
+    if transfer_ix.is_err() {
+        return Err(CustomError::TransferFailed.into());
+    }
 
     let mut nft_name = "Hype".to_string();
     let mut nft_uri =

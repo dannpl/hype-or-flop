@@ -7,4 +7,7 @@ pub enum CustomError {
 
     #[msg("Unauthorized access")]
     Unauthorized,
+
+    #[msg("Transfer failed")]
+    TransferFailed,
 }
