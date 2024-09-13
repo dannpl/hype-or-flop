@@ -28,7 +28,7 @@ pub fn buy(ctx: Context<Buy>, args: BuyArgs) -> Result<()> {
     let market = &mut ctx.accounts.market;
     let signer = &ctx.accounts.signer;
 
-    if !market.active {
+    if Clock::get()?.unix_timestamp > market.end_ts {
         return Err(CustomError::Unauthorized.into());
     }
 

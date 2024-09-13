@@ -15,7 +15,6 @@ pub struct Market {
     pub flop_ticker: [u8; 10],
     pub hype_amount: u64,
     pub flop_amount: u64,
-    pub active: bool,
     pub padding: [u8; 120],
 }
 

@@ -27,7 +27,7 @@ pub fn sell(ctx: Context<Sell>, args: SellArgs) -> Result<()> {
     let signer = &ctx.accounts.signer;
     let asset = &ctx.accounts.asset;
 
-    if !market.active {
+    if Clock::get()?.unix_timestamp > market.end_ts {
         return Err(CustomError::Unauthorized.into());
     }
 

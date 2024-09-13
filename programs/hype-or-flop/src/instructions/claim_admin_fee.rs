@@ -26,7 +26,7 @@ pub fn claim_admin_fee(ctx: Context<ClaimAdminFee>) -> Result<()> {
     let signer = &ctx.accounts.signer;
 
     if
-        market.active ||
+        Clock::get()?.unix_timestamp < market.end_ts ||
         market.admin_fee_claimed ||
         market.authority != *signer.to_account_info().key
     {
