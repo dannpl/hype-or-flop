@@ -4,7 +4,6 @@ use anchor_lang::solana_program::program::invoke;
 use anchor_lang::solana_program::system_instruction::transfer;
 use mpl_core::instructions::{ CreateV2Cpi, CreateV2CpiAccounts, CreateV2InstructionArgs };
 use mpl_core::types::DataState::AccountState;
-use anchor_spl::{ associated_token::AssociatedToken, token::Token };
 use mpl_core::types::{ Attribute, PluginAuthorityPair };
 
 #[derive(Accounts)]
@@ -22,8 +21,6 @@ pub struct Buy<'info> {
     /// CHECK: Metaplex program
     pub metaplex_program: AccountInfo<'info>,
 
-    pub spl_token_program: Program<'info, Token>,
-    pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
 }
 
@@ -96,8 +93,6 @@ pub fn buy(ctx: Context<Buy>, args: BuyArgs) -> Result<()> {
             external_plugin_adapters: None,
         }
     ).invoke_signed(market_signer)?;
-
-    market.users = market.users.checked_add(1).unwrap();
 
     if args.buy_type.eq(&Type::Hype) {
         market.hype_amount = market.hype_amount.checked_add(1).unwrap();

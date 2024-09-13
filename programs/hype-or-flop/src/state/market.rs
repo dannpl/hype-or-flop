@@ -8,8 +8,8 @@ pub struct Market {
     pub bump: u8,
     pub authority: Pubkey,
     pub name: [u8; 16],
-    pub users: u64,
     pub sol_price: u64,
+    pub image: [u8; 32],
     pub hype_ticker: [u8; 10],
     pub flop_ticker: [u8; 10],
     pub hype_amount: u64,
@@ -21,6 +21,7 @@ pub struct Market {
 #[derive(AnchorSerialize, AnchorDeserialize)]
 pub struct CreateMarketArgs {
     pub name: [u8; 16],
+    pub image: [u8; 32],
     pub hype_ticker: [u8; 10],
     pub flop_ticker: [u8; 10],
     pub sol_price: u64,

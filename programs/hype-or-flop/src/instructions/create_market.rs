@@ -27,8 +27,8 @@ pub fn create_market(ctx: Context<CreateMarket>, args: CreateMarketArgs) -> Resu
     market.end_ts = Clock::get()?.unix_timestamp + 3 * 24 * 60 * 60;
     market.bump = ctx.bumps.market;
     market.name = args.name;
+    market.image = args.image;
     market.authority = *ctx.accounts.signer.key;
-    market.users = 0;
     market.hype_ticker = args.hype_ticker;
     market.flop_ticker = args.flop_ticker;
     market.hype_amount = 0;
