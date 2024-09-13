@@ -1,41 +1,8 @@
 import { AnchorProvider, Program, Wallet, web3 } from '@coral-xyz/anchor'
-import {
-  Connection,
-  PublicKey,
-  TransactionInstruction,
-  TransactionMessage,
-  VersionedTransaction
-} from '@solana/web3.js'
+import { Connection, PublicKey } from '@solana/web3.js'
 import { HypeOrFlop } from './types/hype_or_flop'
 import IDL from './types/idl_hype_or_flop.json'
-import { BN } from 'bn.js'
-import {
-  getVaultPDA,
-  getTokenATA,
-  getLuloUserPDA,
-  getUserPositionPDA,
-  getUserPDA,
-  getReferralPDA
-} from './utils/address'
-import {
-  CreateReferralArgs,
-  CreateUserArgs,
-  WithdrawArgs,
-  CreateVaultArgs,
-  DepositArgs,
-  RequestWithdrawArgs,
-  UpdateVaultStatusArgs,
-  UpdateVaultAuthorityArgs,
-  RpcOptions,
-  ClaimRewardsArgs,
-  CreateUserPositionArgs
-} from './types'
-import {
-  LULO_PROGRAM_ID,
-  LULO_PROMOTION_RESERVE_PROGRAM_ID,
-  USDC_DECIMALS,
-  USDC_MINT
-} from './utils/constants'
+import { ClaimFeeArgs, ClaimAdminFeeArgs, RpcOptions } from './types'
 
 export default class HypeOrFlopClient {
   provider: AnchorProvider
@@ -54,5 +21,65 @@ export default class HypeOrFlopClient {
    */
   public async getMarkets() {
     return this.program.account.market.all()
+  }
+
+  /**
+   *  Claim Fee
+   * @param args - Arguments.
+   * @param args.userPubkey - The user public key.
+   * @param args.marketPubkey - The market public key.
+   * @param args.assetPubkey - The asset public key.
+   *
+   * @param options - Options to RPC call
+   * @param options.skipPreflight - Skip preflight checks.
+   * @param options.microLamports - The micro lamports.
+   *
+   */
+  public async claimFee(args: ClaimFeeArgs, options?: RpcOptions) {
+    const method = this.program.methods.claimFee().accounts({
+      signer: args.userPubkey,
+      market: args.marketPubkey,
+      asset: args.assetPubkey
+    })
+
+    if (options?.microLamports) {
+      method.postInstructions([
+        web3.ComputeBudgetProgram.setComputeUnitPrice({
+          microLamports: options.microLamports
+        })
+      ])
+    }
+
+    return method.rpc({ skipPreflight: options?.skipPreflight })
+  }
+
+  /**
+   *  Claim rewards for a user.
+   * @param args - Arguments.
+   * @param args.userPubkey - The user public key.
+   * @param args.marketPubkey - The market public key.
+   * @param args.assetPubkey - The asset public key.
+   *
+   * @param options - Options to RPC call
+   * @param options.skipPreflight - Skip preflight checks.
+   * @param options.microLamports - The micro lamports.
+   *
+   */
+  public async claimAdminFee(args: ClaimAdminFeeArgs, options?: RpcOptions) {
+    const method = this.program.methods.claimAdminFee().accounts({
+      signer: args.userPubkey,
+      market: args.marketPubkey,
+      protocol: new PublicKey('HjJQdfTHgC3EBX3471w4st8BXbBmtbaMyCAXNgcUb7dq')
+    })
+
+    if (options?.microLamports) {
+      method.postInstructions([
+        web3.ComputeBudgetProgram.setComputeUnitPrice({
+          microLamports: options.microLamports
+        })
+      ])
+    }
+
+    return method.rpc({ skipPreflight: options?.skipPreflight })
   }
 }
