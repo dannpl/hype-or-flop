@@ -9,6 +9,7 @@ pub struct Market {
     pub authority: Pubkey,
     pub name: [u8; 16],
     pub users: u64,
+    pub sol_price: u64,
     pub hype_ticker: [u8; 10],
     pub flop_ticker: [u8; 10],
     pub hype_amount: u64,
