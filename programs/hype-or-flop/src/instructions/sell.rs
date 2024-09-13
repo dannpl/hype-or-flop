@@ -2,6 +2,7 @@ use crate::{ errors::CustomError, state::Market, SellArgs, Type };
 use anchor_lang::prelude::*;
 use anchor_lang::solana_program::program::invoke_signed;
 use anchor_lang::solana_program::system_instruction::transfer;
+use anchor_spl::associated_token::AssociatedToken;
 use anchor_spl::token::{ close_account, CloseAccount, TokenAccount };
 use anchor_spl::token::Token;
 
@@ -14,11 +15,11 @@ pub struct Sell<'info> {
     #[account(mut)]
     pub market: Box<Account<'info, Market>>,
 
-    /// CHECK: NFT asset
     #[account(mut)]
     pub asset: Account<'info, TokenAccount>,
 
     pub token_program: Program<'info, Token>,
+    pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
 }
 

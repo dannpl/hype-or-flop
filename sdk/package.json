@@ -1,0 +1,48 @@
+{
+  "name": "@triadxyz/hype-or-flop",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "yarn build",
+    "build": "tsc",
+    "test": "rimraf dist && tsc && node ./dist/test.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "./dist/**/*"
+  ],
+  "keywords": [
+    "solana",
+    "blockchain",
+    "protocol",
+    "vault"
+  ],
+  "author": "triadxyz",
+  "license": "ISC",
+  "dependencies": {
+    "@coral-xyz/anchor": "0.30.0",
+    "@solana/spl-token": "0.4.6",
+    "@solana/web3.js": "1.93.1",
+    "bs58": "^5.0.0",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "6.7.3",
+    "@typescript-eslint/parser": "6.7.3",
+    "axios": "^1.7.2",
+    "eslint": "8.50.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "prettier": "3.2.4",
+    "rimraf": "^5.0.5",
+    "typescript": "5.2.2"
+  }
+}

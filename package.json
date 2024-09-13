@@ -1,8 +1,11 @@
 {
-  "license": "ISC",  
+  "license": "ISC",
   "scripts": {
     "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
-    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check"
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "update-types": "cp target/types/hype_or_flop.ts sdk/src/types/hype_or_flop.ts && prettier --write sdk/src/types/hype_or_flop.ts && cp target/idl/hype_or_flop.json sdk/src/types/idl_hype_or_flop.json && prettier --write sdk/src/types/idl_hype_or_flop.json",
+    "build": "anchor build && yarn update-types",
+    "deploy": "yarn build && anchor deploy"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.30.1"

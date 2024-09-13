@@ -9,9 +9,6 @@ pub struct ClaimFee<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
 
-    // CHECK: Just the protocol account is needed here
-    pub protocol: UncheckedAccount<'info>,
-
     /// CHECK: NFT asset
     #[account(mut)]
     pub asset: Account<'info, TokenAccount>,

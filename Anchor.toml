@@ -4,14 +4,11 @@
 resolution = true
 skip-lint = false
 
-[programs.localnet]
+[programs.devnet]
 hype_or_flop = "E4ZzS3D1XA1jKLYu4BssDVUXsZzPLiuBDabumAYFhAiC"
 
-[registry]
-url = "https://api.apr.dev"
-
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

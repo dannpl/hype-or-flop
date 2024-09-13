@@ -11,7 +11,7 @@ pub struct ClaimAdminFee<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
 
-    // CHECK: Just the protocol account is needed here
+    /// CHECK: Just the protocol account is needed here
     pub protocol: UncheckedAccount<'info>,
 
     #[account(mut)]
