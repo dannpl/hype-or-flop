@@ -242,18 +242,6 @@
             }
           },
           {
-            "name": "hype_ticker",
-            "type": {
-              "array": ["u8", 10]
-            }
-          },
-          {
-            "name": "flop_ticker",
-            "type": {
-              "array": ["u8", 10]
-            }
-          },
-          {
             "name": "sol_price",
             "type": "u64"
           }
@@ -304,18 +292,6 @@
           {
             "name": "admin_fee_claimed",
             "type": "bool"
-          },
-          {
-            "name": "hype_ticker",
-            "type": {
-              "array": ["u8", 10]
-            }
-          },
-          {
-            "name": "flop_ticker",
-            "type": {
-              "array": ["u8", 10]
-            }
           },
           {
             "name": "hype_amount",

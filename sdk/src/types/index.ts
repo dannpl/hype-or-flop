@@ -11,6 +11,12 @@ export interface ClaimAdminFeeArgs {
   marketPubkey: PublicKey
 }
 
+export interface CreateMarketArgs {
+  name: string
+  image: string
+  solPrice: number
+}
+
 export interface RpcOptions {
   skipPreflight?: boolean
   microLamports?: number

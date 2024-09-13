@@ -1,5 +1,5 @@
-export const encodeString = (value: string): number[] => {
-  const buffer = Buffer.alloc(32)
+export const encodeString = (value: string, alloc = 32): number[] => {
+  const buffer = Buffer.alloc(alloc)
 
   buffer.fill(value)
   buffer.fill(' ', value.length)

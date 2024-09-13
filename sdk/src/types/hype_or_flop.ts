@@ -248,18 +248,6 @@ export type HypeOrFlop = {
             }
           },
           {
-            name: 'hypeTicker'
-            type: {
-              array: ['u8', 10]
-            }
-          },
-          {
-            name: 'flopTicker'
-            type: {
-              array: ['u8', 10]
-            }
-          },
-          {
             name: 'solPrice'
             type: 'u64'
           }
@@ -310,18 +298,6 @@ export type HypeOrFlop = {
           {
             name: 'adminFeeClaimed'
             type: 'bool'
-          },
-          {
-            name: 'hypeTicker'
-            type: {
-              array: ['u8', 10]
-            }
-          },
-          {
-            name: 'flopTicker'
-            type: {
-              array: ['u8', 10]
-            }
           },
           {
             name: 'hypeAmount'

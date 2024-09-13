@@ -30,8 +30,6 @@ pub fn create_market(ctx: Context<CreateMarket>, args: CreateMarketArgs) -> Resu
     market.admin_fee_claimed = false;
     market.image = args.image;
     market.authority = *ctx.accounts.signer.key;
-    market.hype_ticker = args.hype_ticker;
-    market.flop_ticker = args.flop_ticker;
     market.hype_amount = 0;
     market.flop_amount = 0;
     market.sol_price = args.sol_price;
